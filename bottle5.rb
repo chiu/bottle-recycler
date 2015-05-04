@@ -12,26 +12,28 @@ initial_bottles =  investment_amount / 2
 
 def recycler(full_bottles, empty_bottles, caps)
 
-# caps = (full_bottles/4).floor
-# empty_bottles
+  puts "new stage of recycling: "
 
-puts "new stage of recycling: "
- full_bottles_from_caps = ( (full_bottles + caps) / 4).floor
+ current_caps = full_bottles + caps
+  current_bottles = full_bottles + empty_bottles
+  
+
+  full_bottles_from_caps = ( current_caps /4).floor
 #puts "full_bottles_from_caps: #{full_bottles_from_caps}"
 
- leftover_caps_from_caps = full_bottles%4
-#puts "leftover_caps_from_caps: #{leftover_caps_from_caps}"
+leftover_caps =  current_caps%4
+#puts "leftover_caps: #{leftover_caps}"
 
- full_bottles_from_empty_bottles = ((full_bottles + empty_bottles) /2).floor
+full_bottles_from_empty_bottles = ( current_bottles /2).floor
 #puts "full_bottles_from_empty_bottles: #{full_bottles_from_empty_bottles}"
 
-leftover_empty_bottles_from_empty_bottles = full_bottles % 2
-#puts "leftover_empty_bottles_from_empty_bottles #{leftover_empty_bottles_from_empty_bottles}" 
+leftover_empty_bottles = current_bottles % 2
+#puts "leftover_empty_bottles #{leftover_empty_bottles}" 
 
 
 total_full_bottles = full_bottles_from_caps + full_bottles_from_empty_bottles 
-total_caps = leftover_caps_from_caps 
-total_empty_bottles =  leftover_empty_bottles_from_empty_bottles 
+total_caps = leftover_caps 
+total_empty_bottles =  leftover_empty_bottles 
 puts "total_full_bottles: #{total_full_bottles};  empty_bottles: #{total_empty_bottles};  caps: #{total_caps}"
 
 @ultimate_full_bottles = @ultimate_full_bottles + total_full_bottles
@@ -44,7 +46,7 @@ puts "ultimate_full_bottles: #{@ultimate_full_bottles};  ultimate_empty_bottles:
 @cycle_count += 1
 
 
-recycler(total_full_bottles, total_empty_bottles, total_caps) unless full_bottles_from_caps == 0 || full_bottles_from_empty_bottles == 0 
+recycler(total_full_bottles, total_empty_bottles, total_caps) unless full_bottles_from_caps == 0 && full_bottles_from_empty_bottles == 0 
 
 
 
